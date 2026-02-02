@@ -1,144 +1,115 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap');
 
 :root {
+    /* ------------------------------ */
+    /* 1. PRIMITIVES (Raw Palette)    */
+    /* ------------------------------ */
+    
+    /* Brand Colors (Greens) */
+    --palette-primary-light: #BFD98D;  /* Was hover */
+    --palette-primary:       #ADC66F;
+    --palette-secondary:     #768C44;
+    --palette-secondary-hov: #8EA35E;
+    --palette-tertiary:      #334B10;
+    --palette-tertiary-hov:  #456126;
+
+    /* Neutrals (Greys) */
+    --palette-white:         #FAFAFA;
+    --palette-gray-200:      #747474;
+    --palette-gray-800:      #303030;
+    --palette-gray-900:      #1a1a1a;
+
+    /* Assets */
+    --font-sans: 'Figtree', sans-serif;
     --cursor-default: url('../assets/cursors/default.svg') 12 12, auto;
     --cursor-pointer: url('../assets/cursors/pointer.svg') 12 12, pointer;
-    --font-family: 'Figtree', sans-serif;
 
-    --background-color: rgb(48, 48, 48);
-    --border-color: rgb(74, 74, 74);
-    --text-main: #fafafa;
+    /* Radii */
+    --radius-sm:   0.25rem;
+    --radius-md:   0.5rem;
+    --radius-lg:   1rem;
+    --radius-full: 9999px;
 
-    --color-primary: #ADC66F;
-    --color-primary-hover: #BFD98D;
-    --color-secondary: #768C44;
-    --color-secondary-hover: #8EA35E;
-    --color-tertiary: #334B10;
-    --color-tertiary-hover: #456126;
+    /* ------------------------------ */
+    /* 2. SEMANTICS (Usage)           */
+    /* ------------------------------ */
 
-    --border-radius-sm: 0.25rem;
-    --border-radius-md: 0.5rem;
-    --border-radius-lg: 1rem;
-    --border-radius-full: 9999px;
+    /* Backgrounds */
+    --bg-default:  var(--palette-gray-800);  /* Main body background */
+    --bg-surface:  var(--palette-gray-900);  /* Navbar/Cards */
+    --bg-accent:   var(--palette-tertiary);  /* Footer/Highlights */
+
+    /* Foregrounds (Text/Icons) */
+    --fg-default:  var(--palette-white);     /* Main text */
+    --fg-muted:    #b3b3b3;                  /* Secondary text */
+    --fg-inverse:  var(--bg-default);        /* Text on bright buttons */
+    --fg-accent:   var(--palette-primary);   /* Highlighted text */
+
+    /* Borders & Lines */
+    --border-default: var(--palette-gray-200);
+    --border-accent:  var(--palette-primary);
+
+    /* Action States */
+    --action-primary:       var(--palette-primary);
+    --action-primary-hover: var(--palette-primary-light);
+    
+    --action-secondary:       var(--palette-secondary);
+    --action-secondary-hover: var(--palette-secondary-hov);
+    
+    --action-tertiary:       var(--palette-tertiary);
+    --action-tertiary-hover: var(--palette-tertiary-hov);
 }
 
-* {
-    transition-duration: .3s;
+/* --------------------------------------------------------- */
+/* BASE STYLES                                               */
+/* --------------------------------------------------------- */
+
+/* Improved Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* 
+   Optimization: Instead of applying transitions to '*', 
+   we apply them to common interactive elements to improve performance. 
+*/
+a, button, input, .transition-base {
+    transition: all 0.3s ease;
 }
 
 body {
-    background: var(--background-color);
-    color: var(--text-main);
+    background: var(--bg-default);
+    color: var(--fg-default);
     cursor: var(--cursor-default);
-    font-family: var(--font-family);
+    font-family: var(--font-sans);
     margin-inline: 2.5vw;
     padding-top: 4rem;
+    line-height: 1.6;
 }
 
-a:hover,
-button:hover {
-    cursor: var(--cursor-pointer) !important;
+/* Selection Styles */
+::selection {
+    background-color: var(--action-primary);
+    color: var(--fg-inverse);
 }
 
-.text-primary {
-    color: var(--color-primary);
-}
+/* --------------------------------------------------------- */
+/* TYPOGRAPHY                                                */
+/* --------------------------------------------------------- */
 
-.text-primary::selection {
-    color: var(--background-color);
-    background-color: var(--color-primary);
-}
-
-.text-secondary {
-    color: var(--color-secondary);
-}
-
-.text-secondary::selection {
-    color: var(--background-color);
-    background-color: var(--color-secondary);
-}
-
-.text-tertiary {
-    color: var(--color-tertiary);
-}
-
-.text-tertiary::selection {
-    color: var(--text-main);
-    background-color: var(--color-tertiary);
-}
-
-.button-primary {
-    background-color: var(--color-primary);
-    color: var(--background-color);
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: var(--cursor-pointer);
-    text-decoration: none;
-    display: inline-block;
-}
-
-.button-primary:hover {
-    background-color: var(--color-primary-hover);
-}
-
-.button-secondary {
-    background-color: var(--color-secondary);
-    color: var(--background-color);
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: var(--cursor-pointer);
-    text-decoration: none;
-    display: inline-block;
-}
-
-.button-secondary:hover {
-    background-color: var(--color-secondary-hover);
-}
-
-.button-tertiary {
-    background-color: var(--color-tertiary);
-    color: var(--text-main);
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: var(--cursor-pointer);
-    text-decoration: none;
-    display: inline-block;
-}
-
-.button-tertiary:hover {
-    background-color: var(--color-tertiary-hover);
-}
-
-.rounded-sm {
-    border-radius: var(--border-radius-sm);
-}
-
-.rounded-md {
-    border-radius: var(--border-radius-md);
-}
-
-.rounded-lg {
-    border-radius: var(--border-radius-lg);
-}
-
-.rounded-full {
-    border-radius: var(--border-radius-full);
-}
-
-h1,
-h2,
-h3 {
+h1, h2, h3 {
     width: fit-content;
+    color: var(--fg-default);
 }
 
+/* Underline Animation */
 h1::after,
 h2::after,
 h3::after {
     content: "";
     display: block;
-    background-color: var(--color-primary);
+    background-color: var(--border-accent);
     width: 32%;
-    height: 4px;
     border-radius: 4px;
     margin-top: -0.125em;
     transition: width 0.25s ease-in-out;
@@ -155,41 +126,111 @@ h1::after { height: 4px; }
 h2::after { height: 3px; }
 h3::after { height: 1.75px; }
 
-::selection {
-    /*background-color: var(--color-secondary-hover);*/
-    background-color: var(--color-primary);
-    color: var(--background-color);
+/* Text Utilities */
+.text-primary   { color: var(--fg-accent); }
+.text-secondary { color: var(--action-secondary); }
+.text-tertiary  { color: var(--action-tertiary); } /* Note: Use carefully on dark bg */
+
+/* Selection Overrides per color */
+.text-primary::selection   { color: var(--bg-default); background-color: var(--action-primary); }
+.text-secondary::selection { color: var(--bg-default); background-color: var(--action-secondary); }
+.text-tertiary::selection  { color: var(--fg-default); background-color: var(--action-tertiary); }
+
+/* --------------------------------------------------------- */
+/* COMPONENTS                                                */
+/* --------------------------------------------------------- */
+
+/* Links & Cursor */
+a:hover,
+button:hover {
+    cursor: var(--cursor-pointer) !important;
 }
 
+/* Buttons */
+/* Base button class to reduce repetition */
+.btn, 
+.button-primary, 
+.button-secondary, 
+.button-tertiary {
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: var(--cursor-pointer);
+    text-decoration: none;
+    display: inline-block;
+    border-radius: var(--radius-sm); /* Default radius */
+}
 
+.button-primary {
+    background-color: var(--action-primary);
+    color: var(--fg-inverse);
+}
+.button-primary:hover {
+    background-color: var(--action-primary-hover);
+}
 
+.button-secondary {
+    background-color: var(--action-secondary);
+    color: var(--fg-inverse);
+}
+.button-secondary:hover {
+    background-color: var(--action-secondary-hover);
+}
+
+.button-tertiary {
+    background-color: var(--action-tertiary);
+    color: var(--fg-default);
+}
+.button-tertiary:hover {
+    background-color: var(--action-tertiary-hover);
+}
+
+/* Utilities: Border Radius */
+.rounded-sm   { border-radius: var(--radius-sm); }
+.rounded-md   { border-radius: var(--radius-md); }
+.rounded-lg   { border-radius: var(--radius-lg); }
+.rounded-full { border-radius: var(--radius-full); }
+
+/* Layout: Footer */
 footer {
-    background-color: var(--color-tertiary);
+    background-color: var(--bg-accent);
+    color: var(--fg-default);
+    padding: 2rem 0; /* Added basic padding */
 }
 
+/* Layout: Navbar */
 nav.navbar {
     position: fixed;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
     top: 0;
-    background-color: var(--background-color);
-    border-bottom: 1px solid var(--border-color);
     right: 0;
     left: 0;
+    width: 100%;
+    
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Suggestion for layout */
+    padding: 0 2.5vw; /* Match body margin */
+    
+    background-color: var(--bg-default); /* Can use --bg-surface if you want it slightly different */
+    border-bottom: 1px solid var(--border-default);
+    z-index: 1000; /* Ensure it stays on top */
 }
 
 nav.navbar ul {
     display: flex;
     flex-direction: row;
     list-style: none;
-    gap: .5rem;
+    gap: 1.5rem; /* Increased gap slightly */
+    padding: 1rem 0;
+    margin: 0;
 }
 
 nav.navbar ul li a.nav-link {
-    color: var(--color-primary);
+    color: var(--fg-accent);
     text-decoration: none;
+    font-weight: 500;
 }
+
 nav.navbar ul li a.nav-link:hover {
-    color: var(--color-primary-hover);
+    color: var(--action-primary-hover);
 }
