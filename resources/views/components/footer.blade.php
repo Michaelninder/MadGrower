@@ -1,3 +1,3 @@
-<div>
-    <!-- No surplus words or unnecessary actions. - Marcus Aurelius -->
-</div>
+<footer class="mt-4">
+    FOOTER
+</footer>

@@ -25,4 +25,13 @@ class PageController extends Controller
     {
         return view('pages.dashboard');
     }
+
+    public function legal(string $section)
+    {
+        $sections = config('madgrower.legal_sections');
+
+        if (!array_key_exists($section, $sections)) {
+            abort(404, __('errors.customs.404.legal.message'));
+        }
+    }
 }

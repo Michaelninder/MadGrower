@@ -1,3 +1,7 @@
-<div>
-    <!-- The whole future lies in uncertainty: live immediately. - Seneca -->
-</div>
+@extends('layouts.app')
+
+@section('content')
+@include('components.navbar')
+@yield('main-content')
+@include('components.footer')
+@endsection

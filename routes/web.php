@@ -7,3 +7,4 @@ Route::get('/', [PageController::class, 'home'])->name('pages.home');
 Route::redirect('/home', '/')->name('home');
 Route::get('/lander', [PageController::class, 'lander'])->name('pages.lander');
 Route::get('/dashboard', [PageController::class, 'dashboard'])->name('pages.dashboard');
+Route::get('/legal/{section}', [PageController::class, 'legal'])->name('pages.legal');
