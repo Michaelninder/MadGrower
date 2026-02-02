@@ -6,7 +6,7 @@
     /* ------------------------------ */
     
     /* Brand Colors (Greens) */
-    --palette-primary-light: #BFD98D;  /* Was hover */
+    --palette-primary-light: #BFD98D;
     --palette-primary:       #ADC66F;
     --palette-secondary:     #768C44;
     --palette-secondary-hov: #8EA35E;
@@ -35,15 +35,15 @@
     /* ------------------------------ */
 
     /* Backgrounds */
-    --bg-default:  var(--palette-gray-800);  /* Main body background */
-    --bg-surface:  var(--palette-gray-900);  /* Navbar/Cards */
-    --bg-accent:   var(--palette-tertiary);  /* Footer/Highlights */
+    --bg-default:  var(--palette-gray-800);
+    --bg-surface:  var(--palette-gray-900);
+    --bg-accent:   var(--palette-tertiary);
 
     /* Foregrounds (Text/Icons) */
-    --fg-default:  var(--palette-white);     /* Main text */
-    --fg-muted:    #b3b3b3;                  /* Secondary text */
-    --fg-inverse:  var(--bg-default);        /* Text on bright buttons */
-    --fg-accent:   var(--palette-primary);   /* Highlighted text */
+    --fg-default:  var(--palette-white);
+    --fg-muted:    #b3b3b3;
+    --fg-inverse:  var(--bg-default);
+    --fg-accent:   var(--palette-primary);
 
     /* Borders & Lines */
     --border-default: var(--palette-gray-200);
@@ -64,15 +64,10 @@
 /* BASE STYLES                                               */
 /* --------------------------------------------------------- */
 
-/* Improved Reset */
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
-/* 
-   Optimization: Instead of applying transitions to '*', 
-   we apply them to common interactive elements to improve performance. 
-*/
 a, button, input, .transition-base {
     transition: all 0.3s ease;
 }
@@ -87,7 +82,6 @@ body {
     line-height: 1.6;
 }
 
-/* Selection Styles */
 ::selection {
     background-color: var(--action-primary);
     color: var(--fg-inverse);
@@ -102,7 +96,6 @@ h1, h2, h3 {
     color: var(--fg-default);
 }
 
-/* Underline Animation */
 h1::after,
 h2::after,
 h3::after {
@@ -119,19 +112,16 @@ h1:hover::after,
 h2:hover::after,
 h3:hover::after {
     width: 86%;
-    transition-duration: 0.3s;
 }
 
 h1::after { height: 4px; }
 h2::after { height: 3px; }
 h3::after { height: 1.75px; }
 
-/* Text Utilities */
 .text-primary   { color: var(--fg-accent); }
 .text-secondary { color: var(--action-secondary); }
-.text-tertiary  { color: var(--action-tertiary); } /* Note: Use carefully on dark bg */
+.text-tertiary  { color: var(--action-tertiary); }
 
-/* Selection Overrides per color */
 .text-primary::selection   { color: var(--bg-default); background-color: var(--action-primary); }
 .text-secondary::selection { color: var(--bg-default); background-color: var(--action-secondary); }
 .text-tertiary::selection  { color: var(--fg-default); background-color: var(--action-tertiary); }
@@ -140,14 +130,11 @@ h3::after { height: 1.75px; }
 /* COMPONENTS                                                */
 /* --------------------------------------------------------- */
 
-/* Links & Cursor */
 a:hover,
 button:hover {
     cursor: var(--cursor-pointer) !important;
 }
 
-/* Buttons */
-/* Base button class to reduce repetition */
 .btn, 
 .button-primary, 
 .button-secondary, 
@@ -157,7 +144,7 @@ button:hover {
     cursor: var(--cursor-pointer);
     text-decoration: none;
     display: inline-block;
-    border-radius: var(--radius-sm); /* Default radius */
+    border-radius: var(--radius-sm);
 }
 
 .button-primary {
@@ -184,7 +171,6 @@ button:hover {
     background-color: var(--action-tertiary-hover);
 }
 
-/* Utilities: Border Radius */
 .rounded-sm   { border-radius: var(--radius-sm); }
 .rounded-md   { border-radius: var(--radius-md); }
 .rounded-lg   { border-radius: var(--radius-lg); }
@@ -194,7 +180,7 @@ button:hover {
 footer {
     background-color: var(--bg-accent);
     color: var(--fg-default);
-    padding: 2rem 0; /* Added basic padding */
+    padding: 2rem 0;
 }
 
 /* Layout: Navbar */
@@ -204,25 +190,35 @@ nav.navbar {
     right: 0;
     left: 0;
     width: 100%;
+    height: 4rem; /* Fixed height to match body padding-top */
     
     display: flex;
     flex-direction: row;
-    align-items: center; /* Center items vertically */
-    justify-content: space-between; /* Suggestion for layout */
-    padding: 0 2.5vw; /* Match body margin */
+    align-items: center; 
+    justify-content: space-between; 
+    padding: 0 2.5vw;
     
-    background-color: var(--bg-default); /* Can use --bg-surface if you want it slightly different */
+    background-color: var(--bg-default);
     border-bottom: 1px solid var(--border-default);
-    z-index: 1000; /* Ensure it stays on top */
+    z-index: 1000;
+}
+
+/* Logo Styling */
+.logo {
+    height: 2.5rem; /* Adjust based on your preference */
+    width: auto;
+    object-fit: contain;
+    display: block;
 }
 
 nav.navbar ul {
     display: flex;
     flex-direction: row;
     list-style: none;
-    gap: 1.5rem; /* Increased gap slightly */
-    padding: 1rem 0;
+    gap: 1.5rem;
+    padding: 0;
     margin: 0;
+    align-items: center;
 }
 
 nav.navbar ul li a.nav-link {

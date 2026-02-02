@@ -12,11 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
+            $table->uuid('id')->primary();
+            $table->string('username')->unique();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            $table->uuid('minecraft_uuid')->nullable()->unique();
+            $table->string('mc_username')->nullable();
+
+            $table->decimal('balance', 12, 2)->default(0.0);
+            $table->string('rank')->default('player');
+
             $table->rememberToken();
             $table->timestamps();
         });
