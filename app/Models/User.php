@@ -70,10 +70,9 @@ class User extends Authenticatable
     public function getAvatarUrl(int $size = 64): string
     {
         if (!$this->minecraft_uuid) {
-            // Return a default "Steve" head if no UUID is linked
-            return "https://crafatar.com/avatars/steve?size={$size}";
+            return "https://mineskin.eu/helm/microsoft/{$size}";
         }
 
-        return "https://crafatar.com/avatars/{$this->minecraft_uuid}?size={$size}&overlay";
+        return "https://mineskin.eu/helm/{$this->minecraft_uuid}/{$size}";
     }
 }

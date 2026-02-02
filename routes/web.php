@@ -8,3 +8,4 @@ Route::redirect('/home', '/')->name('home');
 Route::get('/lander', [PageController::class, 'lander'])->name('pages.lander');
 Route::get('/dashboard', [PageController::class, 'dashboard'])->name('pages.dashboard');
 Route::get('/legal/{section}', [PageController::class, 'legal'])->name('pages.legal');
+Route::get('/recent-users', [PageController::class, 'recent_users'])->name('pages.recent_users');
