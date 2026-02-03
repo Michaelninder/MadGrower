@@ -2,6 +2,8 @@
 
 @section('content')
 @include('components.navbar')
-@yield('main-content')
+<main>
+    @yield('main-content')
+</main>
 @include('components.footer')
 @endsection

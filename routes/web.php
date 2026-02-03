@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\PageController;
+use App\Http\Controllers\{PageController, AuthController, TicketController};
 
 Route::get('/', [PageController::class, 'home'])->name('pages.home');
 Route::redirect('/home', '/')->name('home');
@@ -12,8 +11,8 @@ Route::get('/recent-users', [PageController::class, 'recent_users'])->name('page
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [PageController::class, 'dashboard'])->name('pages.dashboard');
+    Route::resource('tickets', TicketController::class);
 });
-
 
 
 
