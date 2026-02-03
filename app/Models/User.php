@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\{Http, Log};
 
 class User extends Authenticatable
 {
@@ -72,10 +73,30 @@ class User extends Authenticatable
      */
     public function getAvatarUrl(int $size = 64): string
     {
+        $this->minecraft_uuid = $this->fetchUuid();
         if (!$this->minecraft_uuid) {
             return "https://mineskin.eu/helm/microsoft/{$size}";
         }
 
         return "https://mineskin.eu/helm/{$this->minecraft_uuid}/{$size}";
+    }
+
+    /**
+     * Fetch UUID from Mojang API.
+     */
+    private function fetchUuid(): ?string
+    {
+        $username = $this->username;
+        try {
+            $response = Http::get("https://api.mojang.com/users/profiles/minecraft/{$username}");
+
+            if ($response->successful()) {
+                return $response->json('id');
+            }
+        } catch (\Exception $e) {
+            Log::error("Failed to fetch UUID for {$username}: " . $e->getMessage());
+        }
+
+        return null;
     }
 }
