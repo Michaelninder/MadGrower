@@ -298,6 +298,48 @@ nav.navbar ul li a.nav-link:hover {
         rotate: 0deg;
     }
     to {
-        rotate: 356deg;
+        rotate: 365deg;
     }
+}
+
+
+.users-grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 3em;
+}
+
+.user-item {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
+}
+
+img.user-avatar {
+    image-rendering: pixelated; /* https://css-tricks.com/keep-pixelated-images-pixelated-as-they-scale/ */
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    width: 16px;
+    height: 16px;
+    transform: scale(3);
+    margin: 1rem 0;
+}
+
+.user-username {
+    color: var(--fg-accent);
+    font-weight: 700; 
+    display: block;
+}
+
+.user-rank {
+    font-size: 0.85rem;
+    color: var(--fg-muted);
 }

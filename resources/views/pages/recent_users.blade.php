@@ -2,13 +2,15 @@
 
 @section('main-content')
     Recent Users:
-    @forelse($users as $usr)
-        <div>
-            <img src="{{ $usr->getAvatarUrl(32) }}" alt="{{ $usr->username }}">
-            <span>{{ $usr->username }}</span>
-            <span>({{ $usr->rank }})</span>
-        </div>
-    @empty
-        NO USERS ...
-    @endforelse
+    <div class="users-grid-container">
+        @forelse($users as $usr)
+            <div class="user-item">
+                <img src="{{ $usr->getAvatarUrl(16) }}" alt="{{ $usr->username }}" class="user-avatar">
+                <span class="user-username">{{ $usr->username }}</span>
+                <span class="user-rank rank-{{ $usr->rank }}">({{ $usr->rank }})</span>
+            </div>
+        @empty
+            <p>NO USERS ...</p>
+        @endforelse
+    </div>
 @endsection
