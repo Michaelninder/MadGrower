@@ -20,6 +20,9 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'provider',
+        'provider_id',
+        'provider_token',
         'minecraft_uuid',
         'mc_username',
         'balance',
@@ -31,7 +34,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = ['password', 'remember_token'];
+    protected $hidden = ['password', 'remember_token', 'provider_token'];
 
     /**
      * Indicates if the IDs are auto-incrementing.
